@@ -7,6 +7,13 @@ export class AuthController {
     @Post('register')
     @UsePipes(ValidationPipe)
     registerUser(@Body()userData:AuthDto){
-        return `The User email is : ${userData.email}`
+        return {
+            name:userData.name,
+            email:userData.email,
+            country:userData.country,
+            dob:userData.dob,
+            phone:userData.phone,
+            password:userData.password
+        }
     }
 }
