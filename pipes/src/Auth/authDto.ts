@@ -32,8 +32,8 @@ export class AuthDto{
     dob: Date
 
     @IsOptional()
-    @MaxLength(11)
-    @Matches(/^[0-9]{10,11}$/, {message:`phone number should be 10 or 11 digits`})                                                                                                                                                                                                                                                                                                                                                                                            
+    // @MaxLength(11)
+    // @Matches(/^[0-9]{10,11}$/, {message:`phone number should be 10 or 11 digits`})                                                                                                                                                                                                                                                                                                                                                                                            
     phone: number   
 
 }

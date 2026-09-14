@@ -1,4 +1,4 @@
-import { Controller, Get, ParseUUIDPipe, ParseArrayPipe, Query, Param } from '@nestjs/common';
+import { Controller, Get, ParseUUIDPipe, ParseArrayPipe, Query, Param, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service.js';
 
 @Controller()
@@ -10,6 +10,12 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @Post()
+  createMsg(@Body()msg:string){
+    console.log(msg)
+    return 'Message successfully received'
+  }
+
   // @Get()
   // getValue(@Query('isActive', ParseBoolPipe) isActive:Boolean){
   //   if (isActive) {
@@ -19,10 +25,10 @@ export class AppController {
   //   }
   // }
 
-  @Get()
-  getValue(@Query('num', new ParseArrayPipe({items:Number}))num:number[]){
-    return num
-  }
+  // @Get()
+  // getValue(@Query('num', new ParseArrayPipe({items:Number}))num:number[]){
+  //   return num
+  // }
 
   // @Get(':id')
   // getValue(@Param('id', ParseUUIDPipe)id:string){
