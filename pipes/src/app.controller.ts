@@ -1,7 +1,8 @@
-import { Controller, Get, ParseUUIDPipe, ParseArrayPipe, Query, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, ParseUUIDPipe, ParseArrayPipe, Query, Param, Post, Body, Req } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import type { Request } from 'express';
 
-@Controller()
+@Controller('client')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -15,6 +16,47 @@ export class AppController {
     console.log(msg)
     return 'Message successfully received'
   }
+
+  @Get('route1')
+  route1(){
+    return{message: 'This is route1 for /client'}
+  }
+
+  // @Get('route2')
+  // route2(){
+  //   return{message: 'This is route2 for /client'}
+  // }
+
+  @Get('route2')
+  route2(@Req() req:Request){
+    return{
+      contentType: req.headers['content-type'],
+      message: 'This is route2 for /client'
+    }
+  }
+
+  @Get('route3')
+  route3(@Req() req:Request){
+    return{
+      contentType: req.headers['content-type'],
+      message: 'This is route3 for /client'
+    }
+  }
+
+  @Post('route4')
+  route4(@Req() req:Request){
+    return{
+      contentType: req.headers['content-type'],
+      message: 'This is route4 for /client'
+    }
+  }
+
+  // @Get('client')
+  // checkcontentType(){
+  //   return {
+  //     message: 'header received successfully'
+  //   }
+  // }
 
   // @Get()
   // getValue(@Query('isActive', ParseBoolPipe) isActive:Boolean){
