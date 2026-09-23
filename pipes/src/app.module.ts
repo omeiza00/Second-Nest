@@ -4,6 +4,7 @@ import { AppService } from './app.service.js';
 import { AuthController } from './Auth/auth.controller.js';
 import { LoggingMiddleware } from './middleware/logging.middleware.js';
 import { ContentTypeMiddleware } from './middleware/content-type/content-type.middleware.js';
+import { convertMiddleware } from './middleware/convert.middleware.js';
 
 @Module({
   imports: [],
@@ -22,10 +23,11 @@ export class AppModule implements NestModule{
     // }, {
     //   path:'client/route2', method: RequestMethod.GET
     // }).forRoutes('client/*')
-    consumer.apply(ContentTypeMiddleware).exclude({
-      path: 'client/route4', method: RequestMethod.POST
-    }, {
-      path:'client/route2', method: RequestMethod.GET
-    }).forRoutes(AppController)
+    // consumer.apply(ContentTypeMiddleware).exclude({
+    //   path: 'client/route4', method: RequestMethod.POST
+    // }, {
+    //   path:'client/route2', method: RequestMethod.GET
+    // }).forRoutes(AppController)
+    consumer.apply(convertMiddleware).forRoutes('*');
   }
 }

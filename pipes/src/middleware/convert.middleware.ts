@@ -1,0 +1,13 @@
+import { NextFunction, Request, Response } from "express";
+
+export function convertMiddleware(
+    req:Request,
+    res:Response,
+    next:NextFunction
+) {
+    if (req.body && req.body === 'object') {
+        res.status(200).json(req.body)
+        return
+    }
+    next()
+}
